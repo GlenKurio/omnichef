@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Oleh Minko" />
+    <title>Omnichef &mdash; Never Cook Again!</title>
+    <link rel="icon" href="imgs/favicon 300x300.png" />
+    <link rel="apple-touch-icon" href="imgs/favicon-no-bg.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/global-styles.css" />
+    <link rel="stylesheet" href="styles/queries.css" />
+
+    <!-- FONTS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- SCRIPTS -->
+    <!--  <script src="/js/script.js"></script> -->
+
+    <!-- ||| Sharing Link Appearance ||| -->
+
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="http://" />
+    <meta property="og:image:alt" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:url" content="https://" />
+    <meta name="twitter:image:src" content="http://" />
+    <meta name="twitter:image:alt" content="" />
+    <meta name="twitter:creator" content="@" />
+    <meta name="twitter:site" content="@" />
+    <!--There are two special non-standard kind of icons for Safari browser: apple-touch-icon for iOS devices and mask-icon for pinned tabs on macOS. apple-touch-icon is applied only when the user adds a site to home screen: you can specify multiple icons with different sizes for different devices. mask-icon will only be used if the user pins the tab in desktop Safari: the icon itself should be a monochrome SVG, and the color attribute fills the icon with needed color. -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/images/mlwicon.png" />
+    <link rel="mask-icon" sizes="" href="/images/mlwicon.svg" color="#226DAA" /> -->
+  </head>
+  <body ontouchstart>
+    <!-- for iOS browsers -->
+    <header class="header">
+      <a href="#">
+        <img src="imgs/brand-logo.png" alt="omnichef logo" class="logo" />
+      </a>
+      <nav class="main-nav">
+        <ul class="main-nav--list">
+          <li>
+            <a href="#about" class="main-nav--link">About</a>
+          </li>
+          <li>
+            <a href="how-it-works.html" class="main-nav--link">How it Works</a>
+          </li>
+          <li>
+            <a href="#pricing" class="main-nav--link">Pricing</a>
+          </li>
+          <li class="account-gr">
+            <button class="btn--account" onclick="crt.showModal()">
+              <ion-icon
+                name="person-outline"
+                class="main-nav--log-icon"
+              ></ion-icon>
+            </button>
+            <button class="account" onclick="crt.showModal()">Account</button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- mobile nav menu -->
+
+      <button
+        class="btn-mobile-nav"
+        id="btnMobileNav"
+        aria-label="navigational menu"
+      >
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+
+      <!-- CREATE ACCOUNT -->
+
+      <dialog id="crt" class="sign-up">
+        <button onclick="crt.close()" class="btn-close">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <form action="" method="dialog">
+          <div class="container-acc">
+            <div class="form--head-text-box">
+              <p class="form--heading">Create new account.</p>
+              <div class="change-method">
+                <p>Already a member?</p>
+                <button
+                  class="method-link"
+                  onclick="crt.close(), lgn.showModal()"
+                >
+                  Log In
+                </button>
+              </div>
+            </div>
+            <div class="fast-sign">
+              <p class="fast-sign--heading">Sign in With:</p>
+
+              <div class="fast--btns">
+                <img
+                  src="/imgs/logos/Sign in with Google.svg"
+                  alt="log in with google account"
+                />
+                <img
+                  src="/imgs/logos/Sign in with Facebook.svg"
+                  alt="log in with Facebook account"
+                />
+                <img
+                  src="/imgs/logos/Sign in with Aplle.svg"
+                  alt="log in with Apple account"
+                />
+              </div>
+            </div>
+
+            <fieldset class="acc-fieldset">
+              <legend>Sign in with E-mail</legend>
+              <div class="name">
+                <div class="first-name">
+                  <label for="first-name">First Name</label>
+                  <input
+                    id="first-name"
+                    type="text"
+                    placeholder="John"
+                    name="first-name"
+                    required
+                  />
+                </div>
+                <div class="last-name">
+                  <label for="last-name">Last Name</label>
+                  <input
+                    id="first-name"
+                    type="text"
+                    placeholder="Smith"
+                    name="last-name"
+                    required
+                  />
+                </div>
+              </div>
+              <label for="email">E-mail Adress</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="me@exaplemail.com"
+                name="email"
+                required
+              />
+
+              <label for="password"
+                >Create password(4-8 letters & digits)</label
+              >
+              <input
+                id="password"
+                type="password"
+                pattern="[0-9a-fA-F]{4,8}"
+                title="Enter an password consisting of 4-8 hexadecimal digits"
+                autocomplete="new-password"
+              />
+            </fieldset>
+            <button class="create-acc">Create Account</button>
+          </div>
+        </form>
+      </dialog>
+
+      <!-- LOGIN TO ACCOUNT -->
+
+      <dialog id="lgn" class="sign-in">
+        <button onclick="lgn.close()" class="btn-close">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <form action="" method="dialog">
+          <div class="container-acc">
+            <div class="form--head-text-box">
+              <p class="form--heading">Log in to your account.</p>
+              <div class="change-method">
+                <p>Don`t have an Account?</p>
+                <button
+                  class="method-link"
+                  onclick="lgn.close(), crt.showModal()"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+            <div class="fast-sign">
+              <p class="fast-sign--heading">Log in With:</p>
+
+              <div class="fast--btns">
+                <img
+                  src="/imgs/logos/Sign in with Google.svg"
+                  alt="log in with google account"
+                />
+                <img
+                  src="/imgs/logos/Sign in with Facebook.svg"
+                  alt="log in with Facebook account"
+                />
+                <img
+                  src="/imgs/logos/Sign in with Aplle.svg"
+                  alt="log in with Apple account"
+                />
+              </div>
+            </div>
+
+            <fieldset class="acc-fieldset">
+              <legend>Log in with E-mail</legend>
+              <label for="email">E-mail Adress</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="me@exaplemail.com"
+                name="email"
+                required
+              />
+
+              <label for="password">Your password</label>
+              <input
+                id="password"
+                type="password"
+                pattern="[0-9a-fA-F]{4,8}"
+                title="Enter an password consisting of 4-8 hexadecimal digits"
+                autocomplete="new-password"
+              />
+            </fieldset>
+            <button class="create-acc">Log In</button>
+          </div>
+        </form>
+      </dialog>
+    </header>
+    <main>
+      <section class="section-hero">
+        <div class="hero">
+          <div class="hero--text-box">
+            <h1 class="heading--primary">Your personal AI chef.</h1>
+            <p class="hero-description description description-1">
+              The AI powered food subscription that will make you eat healthy
+              again. Tailored to your personal tastes, nutritional needs and
+              schedule.
+            </p>
+            <div class="hero-btns">
+              <a href="#pricing" class="btn btn--primary">Subscribe</a>
+              <a href="#about" class="btn btn--secondary btn--icon"
+                >Learn More</a
+              >
+            </div>
+            <div class="delivered">
+              <div class="delivered--imgs">
+                <img
+                  class="delivered--img"
+                  src="imgs/customers/customer-1.jpg"
+                  alt="customer image"
+                />
+                <img
+                  class="delivered--img"
+                  src="imgs/customers/customer-2.jpg"
+                  alt="customer image"
+                />
+                <img
+                  class="delivered--img"
+                  src="imgs/customers/customer-3.jpg"
+                  alt="customer image"
+                />
+                <img
+                  class="delivered--img"
+                  src="imgs/customers/customer-4.jpg"
+                  alt="customer image"
+                />
+                <img
+                  class="delivered--img"
+                  src="imgs/customers/customer-5.jpg"
+                  alt="customer image"
+                />
+                <img
+                  class="delivered--img"
+                  src="imgs/customers/customer-6.jpg"
+                  alt="customer image"
+                />
+              </div>
+              <p class="delivered--text">
+                <span>150 000+</span> meals delivered last year!
+              </p>
+            </div>
+          </div>
+          <div class="hero--img-box">
+            <img
+              class="hero-img"
+              src="imgs/hero-img-5.webp"
+              alt="delicious meals and beautiful woman eating them."
+            />
+          </div>
+        </div>
+      </section>
+      <section class="section-featured">
+        <div class="container">
+          <h2 class="featured--heading">As Featured In:</h2>
+          <div class="featured--logos">
+            <img src="imgs/logos/Forbes svg.png" alt="" />
+            <img src="imgs/logos/Insider Business svg.png" alt="" />
+            <img src="imgs/logos/TechCrunch svg.png" alt="" />
+            <img src="imgs/logos/The New York Times svg.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <section class="section-about" id="about">
+        <div class="container">
+          <span class="subheading">About Us</span>
+        </div>
+        <div class="about--content grid grid-2-cols">
+          <div class="about--text-box">
+            <h2 class="heading--secondary">Who We Are</h2>
+            <p class="about--description description description-1">
+              Omnichef uses the power of artificial intelligence to generate
+              thousands of unique recipes tailored to every possible diet.
+              Whether you're a vegan, vegetarian, gluten-free, or follow any
+              other dietary restrictions, we have the perfect recipes for you.
+              Our team of professional cooks brings these recipes to life, and
+              we deliver them right to your doorstep at any time that suits you
+              best.
+            </p>
+          </div>
+          <div class="about--img-box">
+            <img
+              src="imgs/app/home-screen.webp"
+              alt="Home screen of the Omnichef mobile application"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="section-ingredients">
+        <div class="container">
+          <span class="subheading">FEATURES</span>
+        </div>
+        <div class="ing-top-content">
+          <h2 class="heading--secondary heading-ing">
+            Discover Unique Nutritional Experience
+          </h2>
+          <p class="description description-1 ing-description-1">
+            Omnichef brings together the perfect blend of innovation,
+            convenience, and culinary expertise to transform your everyday meals
+            into extraordinary dining experiences.
+          </p>
+        </div>
+        <!-- ING 1 -->
+        <div class="ingredient grid grid-2-cols">
+          <div class="ing-text-box">
+            <h3 class="heading--tertiary">AI Recipe Generation</h3>
+            <p class="description description-2">
+              Unleash the power of our advanced AI Recipe Generation technology
+              that generates thousands of unique and personalized recipes
+              tailored to your preferences, dietary needs, and culinary
+              aspirations.
+            </p>
+            <ul class="features-list">
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">100,000+ Recipe Database</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Personalized Recipes</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Ingredient Modifications</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Nutritional Information</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Health Considerations</span>
+              </li>
+            </ul>
+          </div>
+          <div class="ing-img-box">
+            <img src="imgs/app/mockups-ai.webp" alt="" />
+          </div>
+        </div>
+        <!-- ING 2 -->
+        <div class="ingredient ing-2 grid grid-2-cols">
+          <div class="ing-img-box ing-2-img">
+            <img src="imgs/app/mockups-planinng.webp" alt="" />
+          </div>
+          <div class="ing-text-box">
+            <h3 class="heading--tertiary">Easy Meal Planning</h3>
+            <p class="description description-2">
+              Say goodbye to the stress of meal planning. Our platform
+              simplifies the process by providing easy-to-use meal planning
+              tools. With just a few clicks, you can:
+            </p>
+            <ul class="features-list sub-bullets">
+              <li class="feature">
+                <span class="bullet">Customize:</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Weekly & Daily Meal Schedules</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Ingredients in Meals</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Portions and portion sizes</span>
+              </li>
+              <li class="feature">
+                <span class="bullet">Check on: </span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet"> Accordance to Your Diet</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet"> Calories</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet"> Nutrients</span>
+              </li>
+              <li class="feature">
+                <ion-icon
+                  class="bullet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span class="bullet">Potential Allergens and more.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container cul-team">
+          <div class="cul--text-box">
+            <h3 class="heading--tertiary">Expert Culinary Team</h3>
+            <p class="description description-2 cul-description">
+              Our team of expert chefs brings their culinary passion and
+              expertise to every recipe. They meticulously craft each dish,
+              ensuring a harmonious blend of flavors, textures, and
+              presentation.
+            </p>
+          </div>
+          <div class="cul--cards grid grid-5-cols">
+            <figure class="cul--card">
+              <img
+                class="cul--img"
+                src="imgs/chefs/eleanor.webp"
+                alt="Photo of Eleanor"
+              />
+              <p class="cul-name">Eleanor Pena</p>
+              <blockquote class="cul-specialization">
+                Mediterranean Cuisine Maestro
+              </blockquote>
+            </figure>
+            <figure class="cul--card">
+              <img
+                class="cul--img"
+                src="imgs/chefs/jerome.webp"
+                alt="Photo of Jerome"
+              />
+              <p class="cul-name">Jerome Bell</p>
+              <blockquote class="cul-specialization">
+                Asian Fusion Virtuoso
+              </blockquote>
+            </figure>
+            <figure class="cul--card">
+              <img
+                class="cul--img"
+                src="imgs/chefs/jacob.webp"
+                alt="Photo of Jacob"
+              />
+              <p class="cul-name">Jacob Jones</p>
+              <blockquote class="cul-specialization">
+                Latin American Gastronomy Visionary
+              </blockquote>
+            </figure>
+            <figure class="cul--card">
+              <img
+                class="cul--img"
+                src="imgs/chefs/ralph.webp"
+                alt="Photo of Ralph"
+              />
+              <p class="cul-name">Ralph Edwards</p>
+              <blockquote class="cul-specialization">
+                Farm-to-Table Advocate
+              </blockquote>
+            </figure>
+            <!-- <figure class="cul--card">
+              <img
+                class="cul--img"
+                src="imgs/chefs/jane.png"
+                alt="Photo of Jane"
+              />
+              <p class="cul-name">Jane Cooper</p>
+              <blockquote class="cul-specialization">Pastry Wizard</blockquote>
+            </figure> -->
+          </div>
+          <!--  <div class="btn-cul">
+            <a class="btn--text" href="#">Meet Our Team &rarr;</a>
+          </div> -->
+        </div>
+        <div class="container sustain grid grid-2-cols">
+          <div class="sustain--text-box">
+            <h3 class="heading--tertiary">Fresh and Sustainable Ingredients</h3>
+            <p class="description description-2 sustain-description">
+              We are committed to sourcing the highest quality, fresh, and
+              sustainable ingredients for our recipes. From farm-fresh produce
+              to ethically raised proteins, we prioritize ingredients that are
+              not only delicious but also environmentally friendly.
+            </p>
+          </div>
+          <div class="sustain--gallery">
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-1.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-2.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-3.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-4.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-5.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-6.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-7.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-8.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-9.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-10.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-11.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/gallery/gallery-12.jpg"
+                alt="delicious food from sustainable ingredients"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="section-meals" id="meals">
+        <div class="container">
+          <span class="subheading">meals</span>
+        </div>
+
+        <h2 class="heading--secondary">
+          Omnichef AI Chooses from 100,000+ recipes
+        </h2>
+
+        <div class="container grid grid-3-cols">
+          <div class="meal">
+            <img
+              class="meal-img"
+              src="imgs/meals/meal-1.jpg"
+              alt="Japanese Gyozas"
+            />
+
+            <div class="meal-content">
+              <div class="meal-tags">
+                <span class="tag tag--vegetarian">Vegetarian</span>
+              </div>
+
+              <p class="meal-title">Japanese Gyozas</p>
+              <ul class="meal-attributes">
+                <li class="meal-attribute">
+                  <ion-icon class="meal-icon" name="flame-outline"></ion-icon>
+                  <span> <strong>575</strong> Calories</span>
+                </li>
+                <li class="meal-attribute">
+                  <ion-icon class="meal-icon" name="star-outline"></ion-icon>
+                  <span> <strong>4.7</strong> Rating (563)</span>
+                </li>
+                <li class="meal-attribute">
+                  <ion-icon class="meal-icon" name="flash-outline"></ion-icon>
+                  <span>OmniScore &reg; <strong>79</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="meal">
+            <img
+              class="meal-img"
+              src="imgs/meals/meal-2.jpg"
+              alt="Avocado Salad"
+            />
+
+            <div class="meal-content">
+              <div class="meal-tags">
+                <span class="tag tag--vegan">Vegan</span>
+                <span class="tag tag--paleo">Paleo</span>
+              </div>
+
+              <p class="meal-title">Avocado Salad</p>
+              <ul class="meal-attributes">
+                <li class="meal-attribute">
+                  <ion-icon class="meal-icon" name="flame-outline"></ion-icon>
+                  <span> <strong>345</strong> Calories</span>
+                </li>
+                <li class="meal-attribute">
+                  <ion-icon class="meal-icon" name="star-outline"></ion-icon>
+                  <span> <strong>4.9</strong> Rating (871)</span>
+                </li>
+                <li class="meal-attribute">
+                  <ion-icon class="meal-icon" name="flash-outline"></ion-icon>
+                  <span>OmniScore &reg; <strong>85</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="diets">
+            <h3 class="heading--tertiary">Works With Any Diet:</h3>
+            <ul class="diet-list">
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Vegetarian</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Vegan</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Pescatarian</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Gluten-free</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Lactose-free</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Keto</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Paleo</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Kid-friendly</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Low FOODMAP</span>
+              </li>
+              <li class="diet-item">
+                <ion-icon
+                  class="diet-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Vegan</span>
+              </li>
+            </ul>
+            <div class="diets-more-btn">
+              <a href="#" class="btn--text">More &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-testimonials">
+        <div class="container">
+          <span class="subheading">Testimonials</span>
+        </div>
+
+        <div class="testimonials-head">
+          <h2 class="heading--secondary">
+            See what our customers think about Omnichef
+          </h2>
+
+          <img
+            src="imgs/logos/trust-pilot.png"
+            alt="Trust Pilot 5 star rating"
+          />
+        </div>
+        <div class="container">
+          <div class="testimonials-content grid grid-2-cols">
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="imgs/testimonials/carrey.webp"
+                alt="photo of Jim Carrey"
+              />
+              <p class="testimonial-name">Jim Carrey</p>
+              <blockquote class="testimonial-text">
+                "As a lover of all things laughter and flavor, I couldn't resist
+                giving it a try. The meals are like a symphony of deliciousness
+                dancing on my taste buds. It's like having a private comedy show
+                in my mouth! Kudos to the chefs and the AI magic behind it all.
+                <span>
+                  You'll be laughing your way to culinary bliss with
+                  Omnichef!"</span
+                >
+              </blockquote>
+            </figure>
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="imgs/testimonials/musk.webp"
+                alt="photo of Elon Musk"
+              />
+              <p class="testimonial-name">Elon Musk</p>
+              <blockquote class="testimonial-text">
+                "As someone constantly pushing boundaries and exploring new
+                frontiers, I appreciate innovation in all its forms. With
+                Omnichef, we're witnessing a glimpse of the future where
+                technology seamlessly integrates with our daily lives. It's a
+                tasty step towards a smarter, more efficient world."
+              </blockquote>
+            </figure>
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="imgs/testimonials/ortega.webp"
+                alt="photo of Jenna Ortega"
+              />
+              <p class="testimonial-name">Jenna Ortega</p>
+              <blockquote class="testimonial-text">
+                "Wow! I can't believe I've finally found a meal service that
+                caters to my diverse dietary needs. As an advocate for healthy
+                living and mindful eating, I'm thrilled to have discovered
+                Omnichef. I'm constantly impressed by the range of flavors and
+                the quality of ingredients. It's a savior for busy individuals
+                like me who strive to maintain a healthy lifestyle without
+                sacrificing taste!"
+              </blockquote>
+            </figure>
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="imgs/testimonials/the-rock.webp"
+                alt="photo of Dwayne Johnson"
+              />
+              <p class="testimonial-name">Dwayne "The Rock" Johnson</p>
+              <blockquote class="testimonial-text">
+                "I've always believed in maintaining a balanced and disciplined
+                lifestyle, and Omnichef has been an absolute game-changer for
+                me. The convenience of having customized, healthy meals
+                delivered right to my doorstep whenever I am - is invaluable,
+                especially with my demanding schedule. The meals are not only
+                packed with the right nutrients to fuel my workouts, but they
+                also taste fantastic. Omnichef truly rocks!"
+              </blockquote>
+            </figure>
+          </div>
+          <div class="more-btn">
+            <a href="#" class="btn--text">View More &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <section class="section-advantages">
+        <div class="container cont-adv grid grid-4-cols">
+          <div class="advantage">
+            <ion-icon class="adv-icon" name="restaurant-outline"></ion-icon>
+            <p class="adv-title">Never Cook Again</p>
+            <p class="adv-text">
+              Our subscriptions cover 365 days per year, even including major
+              holidays.
+            </p>
+          </div>
+          <div class="advantage">
+            <ion-icon class="adv-icon" name="nutrition-outline"></ion-icon>
+            <p class="adv-title">Local and organic</p>
+            <p class="adv-text">
+              Our cooks only use local, fresh, and organic products to prepare
+              your meals.
+            </p>
+          </div>
+          <div class="advantage">
+            <ion-icon class="adv-icon" name="earth-outline"></ion-icon>
+            <p class="adv-title">No waste</p>
+            <p class="adv-text">
+              We only use reusable and recyclable containers to package all your
+              meals.
+            </p>
+          </div>
+          <div class="advantage">
+            <ion-icon class="adv-icon" name="infinite-outline"></ion-icon>
+            <p class="adv-title">Limitless Menu</p>
+            <p class="adv-text">
+              Our AI Chef model combines recipes and ingredients which gives you
+              a truly limitless menu.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section-pricing" id="pricing">
+        <div class="container">
+          <span class="subheading">Pricing</span>
+        </div>
+        <h2 class="heading--secondary">Eat well withoud breaking the bank.</h2>
+        <div class="container grid plans">
+          <div class="pricing-plan pricing-plan--starter">
+            <header class="plan-header">
+              <p class="plan-name">Starter</p>
+              <p class="plan-price"><span>$</span>329</p>
+              <p class="plan-text">per month. That`s just $11 per meal!</p>
+            </header>
+            <ul class="plan-list">
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>1 meal per day</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Order from 10am to 9pm</span>
+              </li>
+              <li class="plan-list--item__features">Features:</li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Free Delivery</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>All Diets</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>100,000+ meals menu</span>
+              </li>
+            </ul>
+            <div class="plan-subscribe">
+              <a href="/checkout-page/starter.html" class="btn--pricing"
+                >Subscribe</a
+              >
+            </div>
+          </div>
+          <div class="pricing-plan pricing-plan--starter">
+            <header class="plan-header">
+              <p class="plan-name">Standard</p>
+              <p class="plan-price"><span>$</span>529</p>
+              <p class="plan-text">per month. That`s just $9 per meal!</p>
+            </header>
+            <ul class="plan-list">
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>2 meals per day</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Order 24/7</span>
+              </li>
+              <li class="plan-list--item__features">All in Starter, plus:</li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Full meal customization</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Dietary Specificity</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Skip or Pause Deliveries</span>
+              </li>
+            </ul>
+            <div class="plan-subscribe">
+              <a href="/checkout-page/standard.html" class="btn--pricing"
+                >Subscribe</a
+              >
+            </div>
+          </div>
+          <div class="pricing-plan pricing-plan--premium">
+            <header class="plan-header">
+              <p class="plan-name">Premium</p>
+              <p class="plan-price"><span>$</span> 729</p>
+              <p class="plan-text">per month. That`s just $8 per meal!</p>
+            </header>
+            <ul class="plan-list">
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>3 meals per day</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Order 24/7</span>
+              </li>
+              <li class="plan-list--item__features">All in Standard, plus:</li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Pro scheduling</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Last-Minute Deliveries</span>
+              </li>
+              <li class="plan-list--item">
+                <ion-icon
+                  class="list-icon"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <span>Seasonal menus</span>
+              </li>
+            </ul>
+            <div class="plan-subscribe">
+              <a href="/checkout-page/premium.html" class="btn--pricing"
+                >Subscribe</a
+              >
+            </div>
+          </div>
+          <!-- <div class="more-btn more-btn--pricing">
+            <a href="#" class="btn--text">View More &rarr;</a>
+          </div> -->
+        </div>
+      </section>
+      <section class="newsletter-cta cta-cont" id="newsletter-cta">
+        <div class="container">
+          <div class="cta">
+            <div class="cta-text-box">
+              <h2 class="heading--secondary cta-heading">
+                Subscribe to our newsletter!
+              </h2>
+              <p class="cta-text">
+                Be the 1st to know about updates, events and discounts.
+              </p>
+              <form action="post" class="cta-form">
+                <div>
+                  <label for="full-name">Full Name</label>
+                  <input
+                    id="full-name"
+                    type="text"
+                    placeholder="John Doe"
+                    name="full-name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="email">Email Address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="me@examplemail.com"
+                    name="email"
+                    required
+                  />
+                </div>
+                <button class="btn btn--form btn--cta">Send Me Dibs</button>
+              </form>
+            </div>
+            <div
+              class="cta-img-box"
+              role="img"
+              aria-label="woman enjoying food"
+            ></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="#">
+            <img
+              class="fot-logo"
+              src="/imgs/brand-logo.png"
+              alt="Omnichef Logo"
+            />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon class="social-icon" name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon class="social-icon" name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon class="social-icon" name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon class="social-icon" name="logo-tiktok"></ion-icon>
+              </a>
+            </li>
+          </ul>
+
+          <p class="copyright">
+            Copyright &copy; <span class="year">2023</span> by Omnichef inc. All
+            rights reserved
+          </p>
+        </div>
+        <div class="address-col">
+          <p class="footer-heading">Contact Us</p>
+          <address class="contacts">
+            <p class="address">
+              Address: 623 Harrison St., 2nd Floor, San Francisco, CA 94107
+            </p>
+            <p>
+              <a href="tel:415-201-6370" class="footer-link">415-201-6370</a>
+            </p>
+            <p>
+              <a href="mailto:hello@omnichef.com" class="footer-link"
+                >hello@omnichef.com</a
+              >
+            </p>
+          </address>
+        </div>
+        <nav class="nav-col">
+          <p class="footer-heading">Account</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Create an account</a></li>
+            <li><a class="footer-link" href="#">Sign In</a></li>
+            <li><a class="footer-link" href="#">iOs App</a></li>
+            <li><a class="footer-link" href="#">Android App</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">About Omnichef</a></li>
+            <li><a class="footer-link" href="#">For Business</a></li>
+            <li><a class="footer-link" href="#">Partners</a></li>
+            <li><a class="footer-link" href="#">Careers</a></li>
+          </ul>
+        </nav>
+        <nav class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Recipe Directory</a></li>
+            <li><a class="footer-link" href="#">Help Center</a></li>
+            <li><a class="footer-link" href="#">Privacy & Terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const btnMobileNav = document.getElementById("btnMobileNav");
+      const header = document.querySelector("header");
+
+      btnMobileNav.addEventListener("click", function () {
+        header.classList.toggle("nav-open");
+      });
+    </script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

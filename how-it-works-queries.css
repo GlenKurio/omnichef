@@ -1,0 +1,22 @@
+@media (max-width: 57em) {
+  .st-img-2 {
+    grid-row: 4;
+  }
+  .st-img-4 {
+    grid-row: 8;
+  }
+  .st-img-6 {
+    grid-row: 12;
+  }
+  .st-img-8 {
+    grid-row: 16;
+  }
+
+  .step-number {
+    margin-top: 6rem;
+  }
+
+  .bonus-num {
+    font-size: 4rem;
+  }
+}
